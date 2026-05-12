@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yume Zen — Product</title>
+
+<style>
+@font-face {
+    font-family: 'CormorantLocal';
+    src: url('Cormorant1.ttf') format('truetype');
+}
+
+/* ===== BASE ===== */
+body {
+    margin: 0;
+    background: black;
+    color: white;
+    font-family: 'CormorantLocal', serif;
+    cursor: url("glove.cur") 16 16, auto;
+}
+
+/* ===== TOP LEFT LOGO ===== */
+.logo-top {
+    position: fixed;
+    top: 10px;
+    left: 20px;
+    z-index: 1000;
+}
+.logo-top img {
+    width: 150px;
+    opacity: 0.9;
+}
+.logo-top img:hover {
+    opacity: 1;
+}
+
+/* ===== LAYOUT ===== */
+.page {
+    display: grid;
+    grid-template-columns: 1fr 420px 420px;
+    min-height: 100vh;
+    align-items: center;
+}
+
+/* ===== PRODUCT VIEW ===== */
+.product-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* image wrapper */
+.product-main {
+    position: relative;
+    width: 420px;
+    padding: 40px;
+    background: white;
+    border: 1px solid white;
+    overflow: hidden;
+}
+
+/* slider */
+.slider-track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(.4,0,.2,1);
+}
+
+.slider-track img {
+    width: 420px;
+    flex-shrink: 0;
+    display: block;
+}
+
+/* arrows */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 26px;
+    color: black;
+    cursor: pointer;
+    user-select: none;
+    opacity: 0.6;
+}
+
+.arrow:hover {
+    opacity: 1;
+}
+
+.arrow.left { left: 10px; }
+.arrow.right { right: 10px; }
+
+.hidden {
+    display: none;
+}
+
+/* thumbnails */
+.thumbs {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.thumbs img {
+    width: 60px;
+    border: 1px solid white;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.thumbs img:hover {
+    opacity: 1;
+}
+
+/* ===== PRODUCT INFO ===== */
+.product-info {
+    padding: 60px 40px;
+    font-size: 14px;
+}
+
+.product-info h2 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.price {
+    margin-bottom: 24px;
+}
+
+.size-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.size-grid div {
+    border: 1px solid white;
+    padding: 10px 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+.size-grid div:hover {
+    background: white;
+    color: black;
+}
+
+.desc {
+    font-size: 13px;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGO -->
+<a href="shop.html" class="logo-top">
+    <img src="3dgifmaker08212.gif">
+</a>
+
+<div class="page">
+
+<!-- PRODUCT IMAGE -->
+<section class="product-view">
+
+<div class="product-main">
+    <div class="arrow left" id="arrowLeft" onclick="prevImage()">&#10094;</div>
+    <div class="arrow right" id="arrowRight" onclick="nextImage()">&#10095;</div>
+
+    <div class="slider-track" id="sliderTrack">
+        <img src="Untitled design (15).png">
+        <img src="Untitled design (16).png">
+    </div>
+</div>
+
+<div class="thumbs">
+    <img src="Untitled design (15).png" onclick="setImage(0)">
+    <img src="Untitled design (16).png" onclick="setImage(1)">
+</div>
+
+</section>
+
+<!-- PRODUCT INFO -->
+<section class="product-info">
+    <h2>YUME ZEN — BOXY SHIRT</h2>
+    <div class="price">฿1,250.00</div>
+
+    <div class="size-grid">
+        <div>XS</div><div>S</div><div>M</div>
+        <div>L</div><div>XL</div><div>XXL</div>
+    </div>
+
+    <div class="desc">
+        • 100% cotton heavyweight fabric<br>
+        • Boxy silhouette<br>
+        • Screen printed chest graphic<br>
+        • Pre-order item (production time 14 days)
+    </div>
+</section>
+
+</div>
+
+<script>
+const sliderTrack = document.getElementById("sliderTrack");
+const arrowLeft = document.getElementById("arrowLeft");
+const arrowRight = document.getElementById("arrowRight");
+
+const total = sliderTrack.children.length;
+let index = 0;
+
+function updateSlider() {
+    sliderTrack.style.transform = `translateX(-${index * 420}px)`;
+
+    arrowLeft.classList.toggle("hidden", index === 0);
+    arrowRight.classList.toggle("hidden", index === total - 1);
+}
+
+function nextImage() {
+    if (index < total - 1) {
+        index++;
+        updateSlider();
+    }
+}
+
+function prevImage() {
+    if (index > 0) {
+        index--;
+        updateSlider();
+    }
+}
+
+function setImage(i) {
+    index = i;
+    updateSlider();
+}
+
+updateSlider();
+</script>
+
+</body>
+</html>

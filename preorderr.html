@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yume Zen — Access</title>
+
+<style>
+/* ===== LOCAL FONT ===== */
+@font-face {
+    font-family: 'CormorantLocal';
+    src: url('Cormorant1.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ===== BASE ===== */
+body {
+    margin: 0;
+    height: 100vh;
+    background: black;
+    color: white;
+    font-family: 'CormorantLocal', serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    -webkit-font-smoothing: antialiased;
+    cursor: url("glove.cur") 16 16, auto;
+}
+
+/* ===== LOGO 3D ===== */
+.logo-3d {
+    width: 320px;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 700px;
+    margin-bottom: 40px;
+}
+
+.logo-3d img {
+    width: 140%;
+    height: auto;
+    transform-style: preserve-3d;
+    transition: transform 0.12s ease;
+    cursor: pointer;
+}
+
+/* ===== KEYWORD INPUT ===== */
+.keyword-box input {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 10px 16px;
+    width: 260px;
+    text-align: center;
+    font-size: 16px;
+    outline: none;
+    font-family: 'CormorantLocal', serif;
+    letter-spacing: 2px;
+    transition: border-color 0.25s ease;
+}
+
+/* placeholder */
+.keyword-box input::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+/* ===== ERROR STATE ===== */
+.keyword-box input.error {
+    border-color: #be3535;
+    animation: shake 0.35s ease;
+}
+
+/* ===== SHAKE ANIMATION ===== */
+@keyframes shake {
+    0%   { transform: translateX(0); }
+    25%  { transform: translateX(-6px); }
+    50%  { transform: translateX(6px); }
+    75%  { transform: translateX(-4px); }
+    100% { transform: translateX(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGO -->
+<div class="logo-3d" id="logo3d">
+    <img src="Yumi.png" alt="Yume Zen Logo">
+</div>
+
+<!-- KEYWORD -->
+<div class="keyword-box">
+    <input
+        type="text"
+        id="keyword"
+        placeholder="Enter the keyword :"
+        autocomplete="off"
+    >
+</div>
+
+<script>
+/* ===== LOGO 3D INTERACTION ===== */
+const logo = document.getElementById("logo3d");
+const img = logo.querySelector("img");
+const strength = 10;
+
+logo.addEventListener("mousemove", (e) => {
+    const rect = logo.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    img.style.transform = `
+        rotateX(${(-y / strength).toFixed(2)}deg)
+        rotateY(${(x / strength).toFixed(2)}deg)
+        scale(1.06)
+    `;
+});
+
+logo.addEventListener("mouseleave", () => {
+    img.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+});
+
+logo.addEventListener("click", () => {
+    img.style.transform = "rotateX(28deg) rotateY(-28deg) scale(1.12)";
+    setTimeout(() => {
+        img.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+    }, 180);
+});
+
+/* ===== KEYWORD CHECK ===== */
+const correctKeyword = "yume";
+const nextPage = "shop.html";
+const input = document.getElementById("keyword");
+
+input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        if (input.value.trim() === correctKeyword) {
+            window.location.href = nextPage;
+        } else {
+            input.classList.remove("error");
+            void input.offsetWidth; // force reflow
+            input.classList.add("error");
+
+            setTimeout(() => {
+                input.classList.remove("error");
+            }, 350);
+
+            input.value = "";
+        }
+    }
+});
+</script>
+
+</body>
+</html>

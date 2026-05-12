@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yume Zen</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    background:black;
+    color:white;
+    font-family:'Cormorant', serif;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    /* 🔥 CURSOR */
+    cursor: url("glove.cur") 16 16, auto;
+}
+
+/* HEADER */
+.profile-header{
+    text-align:center;
+    margin-top:60px;
+}
+
+/* LOGO */
+.profile-img{
+    width:230px;
+    height:auto;
+    object-fit:contain;
+    border-radius:0;
+    display:block;
+    margin:0 auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6));
+}
+
+/* TITLE */
+h2{
+    margin-top:15px;
+    font-weight:500;
+    letter-spacing:2px;
+}
+
+/* LINKS */
+.links-container{
+    width:90%;
+    max-width:400px;
+    margin-top:30px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.link-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 18px;
+    border:1px solid #444;
+    border-radius:10px;
+    text-decoration:none;
+    color:white;
+    transition:0.25s;
+}
+
+.link-card:hover{
+    background:white;
+    color:black;
+}
+
+.link-text{
+    flex:1;
+    text-align:center;
+    letter-spacing:2px;
+}
+
+/* LOCKED */
+.locked{
+    opacity:0.4;
+    pointer-events:none;
+}
+
+/* BACK TO SHOP */
+.back-shop{
+    display:block;
+    margin-top:40px;
+    text-align:center;
+    text-decoration:none;
+    color:white;
+    opacity:0.6;
+    font-size:14px;
+    letter-spacing:2px;
+    transition:0.2s;
+}
+
+.back-shop:hover{
+    opacity:1;
+    transform: translateY(-2px);
+}
+</style>
+</head>
+
+<body>
+
+<div class="profile-header">
+    <img src="3dgifmaker08212.gif" class="profile-img">
+    <h2>Yume Zen</h2>
+</div>
+
+<div class="links-container">
+
+    <div class="link-card locked">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <div class="link-text">SHOPEE (COMING SOON)</div>
+        <i class="fa-solid fa-lock"></i>
+    </div>
+
+    <div class="link-card locked">
+        <i class="fa-brands fa-line"></i>
+        <div class="link-text">LINE (COMING SOON)</div>
+        <i class="fa-solid fa-lock"></i>
+    </div>
+
+    <div class="link-card locked">
+        <i class="fa-brands fa-tiktok"></i>
+        <div class="link-text">TIKTOK (COMING SOON)</div>
+        <i class="fa-solid fa-lock"></i>
+    </div>
+
+    <a class="link-card" href="https://www.instagram.com/yumezen_merch/" target="_blank">
+        <i class="fa-brands fa-instagram"></i>
+        <div class="link-text">INSTAGRAM</div>
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+    </a>
+
+</div>
+
+<!-- BACK TO SHOP -->
+<a href="shop.html" class="back-shop">
+    ← BACK TO SHOP
+</a>
+
+</body>
+</html>

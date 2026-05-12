@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yume Zen — Product</title>
+
+<style>
+@font-face {
+    font-family: 'CormorantLocal';
+    src: url('Cormorant1.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    background: black;
+    color: white;
+    font-family: 'CormorantLocal', serif;
+    cursor: url("glove.cur") 16 16, auto;
+}
+
+/* TOP BAR */
+.topbar{
+    position:fixed;
+    top:0;
+    right:0;
+    padding:20px;
+    z-index:1000;
+}
+
+.menu-btn{
+    font-size:32px;
+    cursor:pointer;
+    color:white;
+}
+
+/* HIDE CHECKBOX */
+#menu-toggle{
+    display:none;
+}
+
+/* SIDE MENU */
+.menu{
+    position:fixed;
+    top:0;
+    right:-260px;
+    width:240px;
+    height:100vh;
+    background:#0a0a0a;
+    padding:80px 20px;
+    transition:0.3s;
+    border-left:1px solid rgba(255,255,255,0.1);
+}
+
+#menu-toggle:checked ~ .menu{
+    right:0;
+}
+
+.menu a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    font-size:18px;
+    margin-bottom:20px;
+    opacity:0.7;
+}
+
+.menu a:hover{
+    opacity:1;
+    transform: translateX(5px);
+}
+
+/* PAGE */
+.page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* PRODUCT BOX */
+.product {
+    width: 90%;
+    max-width: 340px;
+    border: 1px solid rgb(0, 0, 0);
+    padding: 20px;
+}
+
+/* IMAGE BOX */
+.product-image {
+    width: 100%;
+    height: 360px;
+    background: white;
+    position: relative;
+    overflow: hidden;
+}
+
+/* LINK RESET */
+.product-image a{
+    display:block;
+    width:100%;
+    height:100%;
+}
+
+/* FRONT + BACK IMAGE */
+.product-image img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.3s ease;
+}
+
+/* BACK HIDDEN FIRST */
+.product-image .back{
+    opacity: 0;
+}
+
+/* HOVER SWAP */
+.product-image:hover .front{
+    opacity: 0;
+}
+
+.product-image:hover .back{
+    opacity: 1;
+}
+
+/* TEXT */
+.product-name {
+    margin-top: 16px;
+    font-size: 18px;
+}
+
+.product-note {
+    font-size: 13px;
+    opacity: 0.6;
+}
+
+.product-price {
+    margin-top: 8px;
+}
+
+.product-soon{
+    margin-top:10px;
+    font-size:12px;
+    opacity:0.5;
+    letter-spacing:1px;
+}
+
+/* BACK BUTTON */
+.back {
+    display: inline-block;
+    margin-top: 24px;
+    font-size: 14px;
+    text-decoration: none;
+    color: white;
+    opacity: 0.6;
+}
+
+.back:hover {
+    opacity: 1;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ☰ MENU -->
+<div class="topbar">
+    <label for="menu-toggle" class="menu-btn">☰</label>
+</div>
+
+<input type="checkbox" id="menu-toggle">
+
+<!-- SIDE MENU -->
+<div class="menu">
+    <a href="All Contact.html">CONTACT US</a>
+</div>
+
+<!-- PRODUCT -->
+<div class="page">
+    <div class="product">
+
+        <!-- ✅ CLICK IMAGE TO SHOWPRODUCT -->
+        <div class="product-image">
+            <a href="showproduct.html">
+                <img class="front" src="Untitled design (15).png" alt="">
+                <img class="back" src="Untitled design (16).png" alt="">
+            </a>
+        </div>
+
+        <div class="product-name">YUME ZEN BOXY SHIRT</div>
+        <div class="product-note">PRE ORDER ITEM</div>
+        <div class="product-price">1,200 THB</div>
+
+        <div class="product-soon">COMING SOON</div>
+
+        <a href="preorderr.html" class="back">← back</a>
+
+    </div>
+</div>
+
+</body>
+</html>
